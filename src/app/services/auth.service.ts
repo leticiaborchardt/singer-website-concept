@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SpotifyEnviroment } from '../../environments/environment';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,26 +9,26 @@ import { SpotifyEnviroment } from '../../environments/environment';
 export class AuthService {
   constructor(private http: HttpClient) { }
 
-  getHeaders(): HttpHeaders {
-    return new HttpHeaders({
-      'Authorization': `Bearer ${this.getToken()}`
-    });
-  }
-
-  getToken(): string | null {
+  getToken(): Observable<string | null> {
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + btoa(SpotifyEnviroment.clientId + ':' + SpotifyEnviroment.clientSecret),
       'Content-Type': 'application/x-www-form-urlencoded'
     });
 
-    this.http.post<any>(
+    return this.http.post<any>(
       SpotifyEnviroment.tokenEndpoint,
       'grant_type=client_credentials',
       { headers }
-    ).subscribe(response => {
-      return response.access_token;
-    });
+    ).pipe(
+      map(response => response.access_token || null)
+    );
+  }
 
-    return null;
+  getHeaders(): Observable<HttpHeaders> {
+    return this.getToken().pipe(
+      map(token => new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      }))
+    );
   }
 }
