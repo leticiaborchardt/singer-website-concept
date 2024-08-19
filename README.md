@@ -1,7 +1,7 @@
 
 # The Weeknd - Website Concept
 
-This project is a website inspired by the singer The Weeknd and was developed to practice the Angular framework and API requests.
+This project is an informative SPA (Single Page Application) made with Angular framework and consumes the Spotify API.
 
 ## 🔍 Basic Setup
 
