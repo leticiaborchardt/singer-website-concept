@@ -2,3 +2,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #000201;
+}
+
+.website-logo {
+    font-weight: bold;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: white;
+}

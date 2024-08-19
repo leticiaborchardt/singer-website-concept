@@ -1,8 +1,4 @@
-<div class="p-10">
-  <button class="bg-slate-500 p-2 rounded-lg w-48" (click)="getArtist()">Get Artist</button>
-  
-  <div *ngIf="artist">
-    <p>Name: {{artist.name}}</p>
-    <p>Popularity: {{artist.popularity}}</p>
-  </div>
+<navbar></navbar>
+<div class="container px-12">
+    <router-outlet></router-outlet>
 </div>
