@@ -1,16 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html {
     font-family: "Montserrat", sans-serif;
-    color: white;
+    color: #dddddd;
     height: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     background-color: #000201;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .website-logo {

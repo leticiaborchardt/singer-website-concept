@@ -15,24 +15,19 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': 'Basic ' + btoa(SpotifyEnviroment.clientId + ':' + SpotifyEnviroment.clientSecret),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
 
-    if (!token) {
-      const headers = new HttpHeaders({
-        'Authorization': 'Basic ' + btoa(SpotifyEnviroment.clientId + ':' + SpotifyEnviroment.clientSecret),
-        'Content-Type': 'application/x-www-form-urlencoded'
-      });
+    this.http.post<any>(
+      SpotifyEnviroment.tokenEndpoint,
+      'grant_type=client_credentials',
+      { headers }
+    ).subscribe(response => {
+      return response.access_token;
+    });
 
-      this.http.post<any>(
-        SpotifyEnviroment.tokenEndpoint,
-        'grant_type=client_credentials',
-        { headers }
-      ).subscribe(response => {
-        localStorage.setItem('token', response.access_token);
-        return response.access_token;
-      });
-    }
-
-    return token;
+    return null;
   }
 }

@@ -1,0 +1,18 @@
+<div class="flex flex-col items-center gap-8">
+    <img *ngIf="album.images?.[1]?.url" src="{{album.images[1].url}}" alt="Album image" width="250" class="shadow-2xl">
+    <div>
+        <div class="flex flex-col gap-3 mb-7">
+            <h2 class="font-bold uppercase text-sm text-orange-400">Latest album</h2>
+            <h1 class="text-lg">{{album.name}}</h1>
+        </div>
+
+        <div *ngFor="let track of album.tracks.items">
+            <a href="{{track.external_urls.spotify}}" target="_blank"
+                class="flex justify-between items-center gap-7 font-light text-sm my-2 hover:text-orange-400 transition">
+                <div>{{track.track_number < 10 ? '0' +track.track_number : track.track_number}}.</div>
+                <div class="text-start flex-1">{{track.name}}</div>
+                <div>{{formatMillisecondsToMinutes(track.duration_ms)}}</div>
+            </a>
+        </div>
+    </div>
+</div>

@@ -3,8 +3,11 @@ import { Image } from "./image.model";
 export interface Artist {
     id: string,
     name: string,
-    type: string,
     genres: string[],
     images: Image[],
-    popularity: number
+    popularity: number,
+    followers: {
+        href: string,
+        total: number
+    }
 }
