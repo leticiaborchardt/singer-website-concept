@@ -43,7 +43,7 @@ export class LatestAlbumComponent implements OnInit {
       (response) => {
         this.album = response;
       }, (error) => {
-
+        console.log(error);
       })
   }
 

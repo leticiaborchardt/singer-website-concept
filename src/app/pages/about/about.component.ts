@@ -31,10 +31,14 @@ export class AboutComponent implements OnInit {
 
   getArtist() {
     this.spotifyService.getArtistById(SpotifyEnviroment.artistId).subscribe(
-      (response) => {               
-        this.artist = response;                
+      (response) => {
+        this.artist = response;
       }, (error) => {
-        
+        console.log(error);
       })
+  }
+
+  formatNumber(num: number) {
+    return new Intl.NumberFormat('pt-BR').format(num);
   }
 }

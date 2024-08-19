@@ -18,8 +18,6 @@ export class SpotifyService {
   }
 
   getAlbunsByArtistId(id: string): Observable<AlbumsResponse> {   
-    console.log(this.authService.getToken());
-    
     return this.http.get<AlbumsResponse>(`${this.apiUrl}/artists/${id}/albums`, { headers: this.authService.getHeaders() });
   }
 

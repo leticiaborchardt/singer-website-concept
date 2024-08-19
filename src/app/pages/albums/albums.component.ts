@@ -26,7 +26,7 @@ export class AlbumsComponent implements OnInit {
       (response) => {        
         this.albums = response.items;
       }, (error) => {
-
+        console.log(error);
       })
   }
 }
